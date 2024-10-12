@@ -1,13 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tienda de Sabajones</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        
-    </div>
+    <header>
+        <div class="logo">
+            <img src="resources/logo.jpg" alt="Sabajones la tierrita">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sabajones">Sabajones</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio" class="hero">
+        <h2>Los mejores Sabajones de producción local</h2>
+        <p>
+            Los momentos se disfrutan mejor, con la auténtica tradición <br>
+            Sabajones producidos en el municipio de Tibasosa <br>
+            del el departamento de Boyacá hechos con los sabores<br>
+            autóctonos de la región perfecta para compartir
+        </p>
+        <a href="#sabajones" class="cta">Ver Sabajones</a>
+    </section>
+
+    <section id="sabajones" class="productos">
+        <h2>Nuestros Sabajones</h2>
+        <div class="galeria">
+            <div class="sabajon">
+                <img src="resources/sabajonFeijoa.png" alt="Sabajon Feijoa">
+                <h3>Don Joaquín Feijoa 750cc</h3>
+                <p>$40.000</p>
+            </div>
+            <div class="sabajon">
+                <img src="resources/sabajonCafe.png" alt="Sabajon Cafe">
+                <h3>Don Joaquín Cafe 375cc</h3>
+                <p>$25.000</p>
+            </div>
+            <div class="sabajon">
+                <img src="resources/sabajonMelocoton.png" alt="Sabajon Melocoton">
+                <h3>Don Joaquín Feijoa 750cc</h3>
+                <p>$40.000</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="blog">
+        <h2>Últimos Artículos del Blog</h2>
+        <article>
+            <h3>Cómo elegir el vino perfecto</h3>
+            <p>Descubre los mejores tips para elegir el vino ideal para cada ocasión.</p>
+            <a href="#" class="leer-mas">Leer más</a>
+        </article>
+    </section>
+
+    <section id="contacto" class="formulario">
+        <h2>Contáctanos</h2>
+        <form action="#" method="post">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="mensaje">Mensaje:</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Sabajones la tierrita. Todos los derechos reservados.</p>
+    </footer>
 </body>
 </html>

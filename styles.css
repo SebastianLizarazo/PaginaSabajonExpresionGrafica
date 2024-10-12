@@ -1,0 +1,173 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #e8d286;
+}
+
+header {
+    background-color: #000000;
+    color: #000000;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .logo h1 {
+    font-size: 1.5rem;
+}
+
+header .logo img{
+    width: 150px;
+    height: auto;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 1rem;
+}
+
+nav ul li a {
+    color: #f8efa0;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    background-image: url('hero-vino.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero .cta {
+    display: inline-block; /* Asegura que el enlace se comporte como un botón */
+    margin-top: 1rem;
+    background-color: #ffcc00;
+    color: #8a2b31;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.productos {
+    padding: 2rem;
+    text-align: center;
+}
+
+.productos h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+.galeria {
+    display: flex;
+    justify-content: space-around;
+}
+
+.galeria .sabajon {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    
+}
+
+.galeria .sabajon img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+}
+
+#blog {
+    padding: 2rem;
+    background-color: #fafafa;
+    text-align: center;
+}
+
+#blog h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+article {
+    margin: 1.5rem auto;
+    max-width: 600px;
+    text-align: left;
+}
+
+article h3 {
+    color: #8a2b31;
+    font-size: 1.5rem;
+}
+
+article .leer-mas {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.formulario {
+    padding: 2rem;
+    background-color: #f4f4f4;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+form input, form textarea {
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+form button {
+    background-color: #8a2b31;
+    color: #fff;
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #ffcc00;
+    color: #8a2b31;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
