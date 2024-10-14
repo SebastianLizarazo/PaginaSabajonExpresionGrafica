@@ -171,3 +171,74 @@ footer {
     padding: 1rem;
     margin-top: 2rem;
 }
+
+/* Estilos para el modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000; /* Asegura que el modal esté al frente */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro con transparencia */
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.4s ease; /* Animación suave al aparecer */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra sutil */
+    max-width: 600px;
+    width: 80%; /* Ajusta el tamaño para pantallas más pequeñas */
+    animation: slideDown 0.4s ease; /* Animación de entrada */
+    text-align: center; /* Centrar el contenido */
+    position: relative; /* Para colocar el botón de cierre dentro */
+}
+
+.modal-content img {
+    width: 100%; /* Imagen ocupando todo el ancho del modal */
+    max-width: 300px;
+    margin-bottom: 20px;
+    border-radius: 10px;
+}
+
+.modal-content h3 {
+    margin-top: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.modal-content p {
+    font-size: 18px;
+    color: #555;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); }
+    to { transform: translateY(0); }
+}

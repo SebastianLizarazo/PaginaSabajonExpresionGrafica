@@ -98,7 +98,65 @@
             <button type="submit">Enviar</button>
         </form>
     </section>
-
+    <div id="sabajonModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <img id="modalImage" src="" alt="Detalle Sabajón">
+            <h3 id="modalTitle"></h3>
+            <p id="modalPrice"></p>
+            <p id="modalDescription"></p>
+        </div>
+    </div>
+    <script>
+        const sabajones = [
+            {
+                image: 'resources/sabajonFeijoa.png',
+                title: 'Don Joaquín Feijoa 750cc',
+                price: '$40.000',
+                description: 'Sabajón de feijoa, producido localmente en Tibasosa, Boyacá.'
+            },
+            {
+                image: 'resources/sabajonCafe.png',
+                title: 'Don Joaquín Cafe 375cc',
+                price: '$25.000',
+                description: 'Sabajón con sabor a café, ideal para acompañar postres y sobremesas.'
+            },
+            {
+                image: 'resources/sabajonMelocoton.png',
+                title: 'Don Joaquín Melocotón 750cc',
+                price: '$40.000',
+                description: 'Delicioso sabajón de melocotón con una suave textura y gran sabor.'
+            }
+        ];
+    
+        const modal = document.getElementById("sabajonModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalPrice = document.getElementById("modalPrice");
+        const modalDescription = document.getElementById("modalDescription");
+        const closeModal = document.getElementsByClassName("close")[0];
+    
+        document.querySelectorAll('.sabajon img').forEach((img, index) => {
+            img.addEventListener('click', () => {
+                const sabajon = sabajones[index];
+                modalImage.src = sabajon.image;
+                modalTitle.textContent = sabajon.title;
+                modalPrice.textContent = sabajon.price;
+                modalDescription.textContent = sabajon.description;
+                modal.style.display = "flex";
+            });
+        });
+    
+        closeModal.onclick = function() {
+            modal.style.display = "none";
+        };
+    
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
     <footer>
         <p>&copy; 2024 Sabajones la tierrita. Todos los derechos reservados.</p>
     </footer>
