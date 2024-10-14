@@ -55,13 +55,18 @@ nav ul li a {
 .hero h2 {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: #000000;
+}
+
+.hero p{
+    color: #000000;
 }
 
 .hero .cta {
     display: inline-block; /* Asegura que el enlace se comporte como un botón */
     margin-top: 1rem;
-    background-color: #ffcc00;
-    color: #8a2b31;
+    background-color: #a1ba47;
+    color: #000000;
     padding: 0.8rem 2rem;
     border-radius: 5px;
     text-decoration: none;
@@ -76,6 +81,7 @@ nav ul li a {
 .productos h2 {
     font-size: 2rem;
     margin-bottom: 2rem;
+    color: #000000;
 }
 
 .galeria {
@@ -107,6 +113,15 @@ nav ul li a {
 #blog h2 {
     font-size: 2rem;
     margin-bottom: 1rem;
+    color: #000000;
+}
+
+#blog h3{
+    text-align: center;
+}
+
+#blog p {
+    text-align: justify;
 }
 
 article {
@@ -116,7 +131,7 @@ article {
 }
 
 article h3 {
-    color: #8a2b31;
+    color: #dac572;
     font-size: 1.5rem;
 }
 
