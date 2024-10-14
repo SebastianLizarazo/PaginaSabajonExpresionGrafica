@@ -232,7 +232,7 @@ footer {
     color: #333;
 }
 
-/* Animaciones */
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -241,4 +241,54 @@ footer {
 @keyframes slideDown {
     from { transform: translateY(-50px); }
     to { transform: translateY(0); }
+}
+.purchase-section {
+    margin-top: 20px;
+}
+
+.purchase-section label {
+    font-size: 18px;
+    margin-right: 10px;
+}
+
+.purchase-section input {
+    width: 50px;
+    padding: 5px;
+    text-align: center;
+}
+
+.purchase-section .buy {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.purchase-section .buy:hover {
+    background-color: #218838;
+}
+
+#totalPrice {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #333;
+}
+
+
+#confirmationModal .modal-content {
+    text-align: center;
+}
+
+#confirmationModal h3 {
+    color: #28a745;
+}
+
+#confirmationModal p {
+    font-size: 18px;
+    color: #555;
 }
