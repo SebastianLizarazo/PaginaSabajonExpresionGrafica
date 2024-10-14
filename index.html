@@ -105,13 +105,17 @@
             <h3 id="modalTitle"></h3>
             <p id="modalPrice"></p>
             <p id="modalDescription"></p>
-
+    
+            <!-- Nueva sección para seleccionar cantidad -->
             <div class="purchase-section">
                 <label for="quantity">Cantidad:</label>
                 <input type="number" id="quantity" value="1" min="1" max="10">
-                <button id="buyButton" class="buy">Comprar</button>
+                <p id="availableQuantity"></p> <!-- Cantidad disponible -->
             </div>
+            <!-- Mostrar precio total antes de la compra -->
             <p id="totalPrice"></p>
+            <!-- Botón para realizar la compra -->
+            <button id="buyButton" class="buy">Comprar</button>
         </div>
     </div>
     
@@ -123,94 +127,107 @@
             <p>Gracias por tu compra. El pedido será procesado pronto.</p>
         </div>
     </div>
-<script>
-    const sabajones = [
-        {
-            image: 'resources/sabajonFeijoa.png',
-            title: 'Don Joaquín Feijoa 750cc',
-            price: 40000,
-            description: 'Sabajón de feijoa, producido localmente en Tibasosa, Boyacá.'
-        },
-        {
-            image: 'resources/sabajonCafe.png',
-            title: 'Don Joaquín Cafe 375cc',
-            price: 25000,
-            description: 'Sabajón con sabor a café, ideal para acompañar postres y sobremesas.'
-        },
-        {
-            image: 'resources/sabajonMelocoton.png',
-            title: 'Don Joaquín Melocotón 750cc',
-            price: 40000,
-            description: 'Delicioso sabajón de melocotón con una suave textura y gran sabor.'
-        }
-    ];
-
-    const modal = document.getElementById("sabajonModal");
-    const modalImage = document.getElementById("modalImage");
-    const modalTitle = document.getElementById("modalTitle");
-    const modalPrice = document.getElementById("modalPrice");
-    const modalDescription = document.getElementById("modalDescription");
-    const totalPriceElement = document.getElementById("totalPrice");
-    const quantityInput = document.getElementById("quantity");
-    const buyButton = document.getElementById("buyButton");
-    const confirmationModal = document.getElementById("confirmationModal");
-    const closeConfirmation = document.getElementsByClassName("closeConfirmation")[0];
-    const closeModal = document.getElementsByClassName("close")[0];
-
-    let currentSabajonPrice = 0;
-
-    // Abrir modal al hacer click en las imágenes
-    document.querySelectorAll('.sabajon img').forEach((img, index) => {
-        img.addEventListener('click', () => {
-            const sabajon = sabajones[index];
-            modalImage.src = sabajon.image;
-            modalTitle.textContent = sabajon.title;
-            modalPrice.textContent = `$${sabajon.price}`;
-            modalDescription.textContent = sabajon.description;
-            modal.style.display = "flex";
-            currentSabajonPrice = sabajon.price;
-            totalPriceElement.textContent = '';
-            quantityInput.value = 1;
+    <script>
+        const sabajones = [
+            {
+                image: 'resources/sabajonFeijoa.png',
+                title: 'Don Joaquín Feijoa 750cc',
+                price: 40000,
+                description: 'Sabajón de feijoa, producido localmente en Tibasosa, Boyacá.',
+                stock: 5 // Cantidad disponible
+            },
+            {
+                image: 'resources/sabajonCafe.png',
+                title: 'Don Joaquín Cafe 375cc',
+                price: 25000,
+                description: 'Sabajón con sabor a café, ideal para acompañar postres y sobremesas.',
+                stock: 8
+            },
+            {
+                image: 'resources/sabajonMelocoton.png',
+                title: 'Don Joaquín Melocotón 750cc',
+                price: 40000,
+                description: 'Delicioso sabajón de melocotón con una suave textura y gran sabor.',
+                stock: 3
+            }
+        ];
+    
+        const modal = document.getElementById("sabajonModal");
+        const modalImage = document.getElementById("modalImage");
+        const modalTitle = document.getElementById("modalTitle");
+        const modalPrice = document.getElementById("modalPrice");
+        const modalDescription = document.getElementById("modalDescription");
+        const totalPriceElement = document.getElementById("totalPrice");
+        const quantityInput = document.getElementById("quantity");
+        const availableQuantityElement = document.getElementById("availableQuantity");
+        const buyButton = document.getElementById("buyButton");
+        const confirmationModal = document.getElementById("confirmationModal");
+        const closeConfirmation = document.getElementsByClassName("closeConfirmation")[0];
+        const closeModal = document.getElementsByClassName("close")[0];
+    
+        let currentSabajonPrice = 0;
+        let currentSabajonStock = 0; // Stock actual del sabajón
+    
+        // Abrir modal al hacer click en las imágenes
+        document.querySelectorAll('.sabajon img').forEach((img, index) => {
+            img.addEventListener('click', () => {
+                const sabajon = sabajones[index];
+                modalImage.src = sabajon.image;
+                modalTitle.textContent = sabajon.title;
+                modalPrice.textContent = `$${sabajon.price}`;
+                modalDescription.textContent = sabajon.description;
+                modal.style.display = "flex";
+                currentSabajonPrice = sabajon.price;
+                currentSabajonStock = sabajon.stock; // Actualizar la cantidad disponible
+                availableQuantityElement.textContent = `Disponibles: ${currentSabajonStock}`;
+                quantityInput.max = currentSabajonStock; // Limitar cantidad seleccionable
+                totalPriceElement.textContent = ''; // Limpiar el precio total
+                quantityInput.value = 1; // Restablecer la cantidad a 1
+                updateTotalPrice(); // Mostrar el precio inicial
+            });
         });
-    });
-
-    // Cerrar el modal
-    closeModal.onclick = function() {
-        modal.style.display = "none";
-    };
-
-    window.onclick = function(event) {
-        if (event.target == modal) {
+    
+        // Cerrar el modal principal
+        closeModal.onclick = function() {
             modal.style.display = "none";
+        };
+    
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    
+        // Actualizar el precio total cada vez que cambie la cantidad
+        quantityInput.addEventListener('input', updateTotalPrice);
+    
+        function updateTotalPrice() {
+            const quantity = parseInt(quantityInput.value);
+            const totalPrice = currentSabajonPrice * quantity;
+            totalPriceElement.textContent = `Total a pagar: $${totalPrice}`;
         }
-    };
-
-    // Actualizar el precio total al hacer clic en comprar
-    buyButton.onclick = function() {
-        const quantity = parseInt(quantityInput.value);
-        const totalPrice = currentSabajonPrice * quantity;
-        totalPriceElement.textContent = `Total a pagar: $${totalPrice}`;
-        
-        // Mostrar modal de confirmación tras una breve pausa
-        setTimeout(() => {
-            modal.style.display = "none";
-            confirmationModal.style.display = "flex";
-        }, 1000);
-    };
-
-    // Cerrar el modal de confirmación
-    closeConfirmation.onclick = function() {
-        confirmationModal.style.display = "none";
-    };
-
-    window.onclick = function(event) {
-        if (event.target == confirmationModal) {
+    
+        // Mostrar el modal de confirmación tras hacer clic en comprar
+        buyButton.onclick = function() {
+            const quantity = parseInt(quantityInput.value);
+    
+            if (quantity > currentSabajonStock) {
+                alert('No hay suficientes productos disponibles.');
+            } else {
+                currentSabajonStock -= quantity; // Restar la cantidad comprada del stock
+                modal.style.display = "none"; // Cerrar el modal principal
+                confirmationModal.style.display = "flex"; // Mostrar modal de confirmación
+            }
+        };
+    
+        // Cerrar el modal de confirmación
+        closeConfirmation.onclick = function() {
             confirmationModal.style.display = "none";
-        }
-    };
-</script>
-    <footer>
-        <p>&copy; 2024 Sabajones la tierrita. Todos los derechos reservados.</p>
-    </footer>
-</body>
-</html>
+        };
+    
+        window.onclick = function(event) {
+            if (event.target == confirmationModal) {
+                confirmationModal.style.display = "none";
+            }
+        };
+    </script>
