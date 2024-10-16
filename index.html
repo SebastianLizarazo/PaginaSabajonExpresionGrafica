@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  
     <header>
         <div class="logo">
             <img src="resources/logo.jpg" alt="Sabajones la tierrita">
@@ -97,7 +98,7 @@
             <button type="submit">Enviar</button>
         </form>
     </section>
-    <div id="sabajonModal" class="modal">
+    <div id="paginaVenta" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <img id="modalImage" src="" alt="Detalle Sabajón">
@@ -105,8 +106,8 @@
             <p id="modalPrice"></p>
             <p id="modalDescription"></p>
     
-            <!-- Nueva sección para seleccionar cantidad -->
-            <div class="purchase-section">
+            <!--  sección para seleccionar cantidad -->
+            <div class="cantidadPro">
                 <label for="quantity">Cantidad:</label>
                 <input type="number" id="quantity" value="1" min="1" max="10">
                 <p id="availableQuantity"></p> <!-- Cantidad disponible -->
@@ -118,8 +119,8 @@
         </div>
     </div>
     
-    <!-- Modal de confirmación de compra -->
-    <div id="confirmationModal" class="modal">
+    <!-- pagina  de compra -->
+    <div id="confirmacionCompra" class="modal">
         <div class="modal-content">
             <span class="closeConfirmation">&times;</span>
             <h3>¡Compra realizada con éxito!</h3>
@@ -127,6 +128,7 @@
         </div>
     </div>
     <script>
+          let currentSabajonIndex = 0; 
         const sabajones = [
             {
                 image: 'resources/sabajonFeijoa.png',
@@ -151,7 +153,7 @@
             }
         ];
     
-        const modal = document.getElementById("sabajonModal");
+        const modal = document.getElementById("paginaVenta");
         const modalImage = document.getElementById("modalImage");
         const modalTitle = document.getElementById("modalTitle");
         const modalPrice = document.getElementById("modalPrice");
@@ -160,7 +162,7 @@
         const quantityInput = document.getElementById("quantity");
         const availableQuantityElement = document.getElementById("availableQuantity");
         const buyButton = document.getElementById("buyButton");
-        const confirmationModal = document.getElementById("confirmationModal");
+        const confirmation = document.getElementById("confirmacionCompra");
         const closeConfirmation = document.getElementsByClassName("closeConfirmation")[0];
         const closeModal = document.getElementsByClassName("close")[0];
     
@@ -169,24 +171,25 @@
     
         // Abrir modal al hacer click en las imágenes
         document.querySelectorAll('.sabajon img').forEach((img, index) => {
-            img.addEventListener('click', () => {
-                const sabajon = sabajones[index];
-                modalImage.src = sabajon.image;
-                modalTitle.textContent = sabajon.title;
-                modalPrice.textContent = `$${sabajon.price}`;
-                modalDescription.textContent = sabajon.description;
-                modal.style.display = "flex";
-                currentSabajonPrice = sabajon.price;
-                currentSabajonStock = sabajon.stock; // Actualizar la cantidad disponible
-                availableQuantityElement.textContent = `Disponibles: ${currentSabajonStock}`;
-                quantityInput.max = currentSabajonStock; // Limitar cantidad seleccionable
-                totalPriceElement.textContent = ''; // Limpiar el precio total
-                quantityInput.value = 1; // Restablecer la cantidad a 1
-                updateTotalPrice(); // Mostrar el precio inicial
+    img.addEventListener('click', () => {
+        const sabajon = sabajones[index];
+        currentSabajonIndex = index; // Guardar el índice del producto actual
+        modalImage.src = sabajon.image;
+        modalTitle.textContent = sabajon.title;
+        modalPrice.textContent = `$${sabajon.price}`;
+        modalDescription.textContent = sabajon.description;
+        modal.style.display = "flex";
+        currentSabajonPrice = sabajon.price;
+        currentSabajonStock = sabajon.stock; // Actualizar la cantidad disponible
+        availableQuantityElement.textContent = `Disponibles: ${currentSabajonStock}`;
+        quantityInput.max = currentSabajonStock; // Limitar la cantidad seleccionable al stock disponible
+        totalPriceElement.textContent = ''; // Limpiar el precio total
+        quantityInput.value = 1; // Restablecer la cantidad a 1
+        updateTotalPrice(); // Mostrar el precio iniciall
             });
         });
     
-        // Cerrar el modal principal
+        // Cerrar la pagina de compra
         closeModal.onclick = function() {
             modal.style.display = "none";
         };
@@ -197,7 +200,7 @@
             }
         };
     
-        // Actualizar el precio total cada vez que cambie la cantidad
+        // Actualiza el precio  cada vez que cambie la cantidad
         quantityInput.addEventListener('input', updateTotalPrice);
     
         function updateTotalPrice() {
@@ -206,27 +209,41 @@
             totalPriceElement.textContent = `Total a pagar: $${totalPrice}`;
         }
     
-        // Mostrar el modal de confirmación tras hacer clic en comprar
+        // Mostrar la pagina de confirmación de compra
         buyButton.onclick = function() {
             const quantity = parseInt(quantityInput.value);
     
             if (quantity > currentSabajonStock) {
                 alert('No hay suficientes productos disponibles.');
             } else {
-                currentSabajonStock -= quantity; // Restar la cantidad comprada del stock
-                modal.style.display = "none"; // Cerrar el modal principal
-                confirmationModal.style.display = "flex"; // Mostrar modal de confirmación
+                sabajones[currentSabajonIndex].stock -= quantity;
+        currentSabajonStock -= quantity;
+
+        // Actualizar la cantidad disponible 
+        availableQuantityElement.textContent = `Disponibles: ${currentSabajonStock}`;
+        quantityInput.max = currentSabajonStock; // Actualizar el máximo permitido para la cantidad seleccionable
+
+        // Cerrar pagina de compra 
+        modal.style.display = "none";
+
+        // Mostrar pagina de confirmación de compra
+        confirmacionCompra.style.display = "flex";
+
+        // Si el stock llega a 0, mostrar un mensaje
+        if (currentSabajonStock === 0) {
+            alert('El producto se ha agotado.');
+        }
             }
         };
     
-        // Cerrar el modal de confirmación
+        // Cerrar pagina  de confirmación
         closeConfirmation.onclick = function() {
-            confirmationModal.style.display = "none";
+            confirmation.style.display = "none";
         };
     
         window.onclick = function(event) {
-            if (event.target == confirmationModal) {
-                confirmationModal.style.display = "none";
+            if (event.target == confirmacionCompra) {
+                confirmation.style.display = "none";
             }
         };
     </script>

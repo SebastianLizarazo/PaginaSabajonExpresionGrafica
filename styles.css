@@ -255,16 +255,16 @@ footer {
     from { transform: translateY(-50px); }
     to { transform: translateY(0); }
 }
-.purchase-section {
+.cantidadPro {
     margin-top: 20px;
 }
 
-.purchase-section label {
+.cantidadPro label {
     font-size: 18px;
     margin-right: 10px;
 }
 
-.purchase-section input {
+.cantidadPro input {
     width: 50px;
     padding: 5px;
     text-align: center;
@@ -273,7 +273,7 @@ footer {
 
 
 
-.purchase-section .buy {
+.cantidadPro .buy {
     background-color: #28a745;
     color: yellowgreen;
     border: none;
@@ -287,7 +287,7 @@ footer {
     text-align: center; /* Centrar texto dentro del botón */
 }
 
-.purchase-section .buy:hover {
+.cantidadPro .buy:hover {
     background-color: #218838;
 }
 #totalPrice {
@@ -296,15 +296,15 @@ footer {
     color: #333;
 }
 
-#confirmationModal .modal-content {
+#confirmacionCompra .modal-content {
     text-align: center;
 }
 
-#confirmationModal h3 {
+#confirmacionCompra h3 {
     color: #28a745;
 }
 
-#confirmationModal p {
+#confirmacionCompra p {
     font-size: 18px;
     color: #555;
 }
