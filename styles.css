@@ -187,8 +187,8 @@ footer {
     margin-top: 2rem;
 }
 
-/* Estilos para el modal */
-.modal {
+
+.pagina {
     display: none;
     position: fixed;
     z-index: 1000; /* Asegura que el modal esté al frente */
@@ -201,7 +201,7 @@ footer {
     align-items: center;
     animation: fadeIn 0.4s ease; /* Animación suave al aparecer */
 }
-.modal-content {
+.pagina-content {
     background-color: #f8efa0;
     padding: 20px;
     border-radius: 10px;
@@ -209,23 +209,23 @@ footer {
     max-width: 500px;
     width: 60%; /* Ajusta el tamaño para pantallas más pequeñas */
     animation: slideDown 0.4s ease; /* Animación de entrada */
-    text-align: center; /* Centrar el contenido */
-    position: relative; /* Para colocar el botón de cierre dentro */
+    text-align: center; 
+    position: relative; 
 }
 
-.modal-content img {
-    width: 100%; /* Imagen ocupando todo el ancho del modal */
+.pagina-content img {
+    width: 100%;
     max-width: 300px;
     margin-bottom: 20px;
     border-radius: 10px;
 }
-.modal-content h3 {
+.pagina-content h3 {
     margin-top: 0;
     font-size: 24px;
     color: #333;
 }
 
-.modal-content p {
+.pagina-content p {
     font-size: 18px;
     color: #555;
 }
@@ -273,7 +273,7 @@ footer {
 
 
 
-.cantidadPro .buy {
+.cantidadPro .Comprar {
     background-color: #28a745;
     color: yellowgreen;
     border: none;
@@ -287,7 +287,7 @@ footer {
     text-align: center; /* Centrar texto dentro del botón */
 }
 
-.cantidadPro .buy:hover {
+.cantidadPro .Comprar:hover {
     background-color: #218838;
 }
 #totalPrice {
@@ -296,7 +296,7 @@ footer {
     color: #333;
 }
 
-#confirmacionCompra .modal-content {
+#confirmacionCompra .pagina-content {
     text-align: center;
 }
 
@@ -308,7 +308,7 @@ footer {
     font-size: 18px;
     color: #555;
 }
-#availableQuantity {
+#cantidadDisponible {
     font-size: 16px;
     color: #333;
     margin-top: 10px;
