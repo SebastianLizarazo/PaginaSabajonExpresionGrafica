@@ -314,4 +314,90 @@ footer {
     margin-top: 10px;
     font-weight: bold;
 }
+/* Fondo oscuro con transparencia para la superposición del modal */
+#promocionesModal {
+    display: none; /* Oculto por defecto */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Fondo oscuro translúcido */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
 
+/* Contenedor del modal con un fondo claro y bordes redondeados */
+.modal-content {
+    background-color: #fff6e5; /* Fondo beige claro */
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* Botón de cierre en el modal */
+.closePromociones {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #333;
+    cursor: pointer;
+}
+
+/* Imagen de promoción dentro del modal */
+.promo-image {
+    width: 100%;
+    max-width: 180px;
+    margin: 15px auto;
+    display: block;
+    border-radius: 10px;
+    border: 2px solid black; /* Borde rojo para resaltar */
+}
+
+/* Texto principal de la promoción */
+.promo-text {
+    font-size: 1.2em;
+    color: #2c3e50; /* Color gris oscuro */
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+/* Precio original tachado */
+.precio-original {
+    color: #888;
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+/* Precio con descuento en rojo */
+.precio-descuento {
+    color: #e74c3c; /* Rojo vibrante */
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+/* Botón de acción en el modal */
+.promo-button {
+    background-color: #e74c3c; /* Fondo rojo */
+    color: #fff; /* Texto blanco */
+    border: none;
+    padding: 12px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease;
+    margin-top: 15px;
+}
+
+.promo-button:hover {
+    background-color: #c0392b; /* Rojo oscuro al pasar el cursor */
+}

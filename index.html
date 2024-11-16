@@ -7,7 +7,18 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  
+<!-- Modal de Promociones -->
+<div id="promocionesModal" class="modal">
+    <div class="modal-content">
+        <span class="closePromociones">&times;</span>
+        <h2>¡Oferta Especial en Sabajones!</h2>
+        <img src="resources/sabajonFeijoa.png" alt="Sabajón Feijoa en Promoción" class="promo-image">
+        <p class="promo-text">Aprovecha un <strong>10% de descuento</strong> en nuestro Sabajón Feijoa 750cc.</p>
+        <p class="precio-original">Precio original: <s>$40.000</s></p>
+        <p class="precio-descuento">Precio con descuento: <strong>$36.000</strong></p>
+        <button onclick="closePromocionesModal()" class="promo-button">Ver Más Sabajones</button>
+    </div>
+</div>
     <header>
         <div class="logo">
             <img src="resources/logo.jpg" alt="Sabajones la tierrita">
@@ -111,6 +122,8 @@
                 <label for="cantidadPro">Cantidad:</label>
                 <input type="number" id="cantidadPro" value="1" min="1" max="10">
                 <p id="cantidadDisponible"></p> <!-- Cantidad disponible -->
+
+                
             </div>
             <!-- Mostrar precio total antes de la compra -->
             <p id="perocioT"></p>
@@ -120,13 +133,25 @@
     </div>
     
     <!-- pagina  de compra -->
-    <div id="confirmacionCompra" class="pagina">
-        <div class="pagina-content">
-            <span class="cerrarConfirmacion">&times;</span>
-            <h3>¡Compra realizada con éxito!</h3>
-            <p>Gracias por tu compra. El pedido será procesado pronto.</p>
-        </div>
+  <!-- Modal de confirmación de compra -->
+<div id="confirmacionCompra" class="pagina">
+    <div class="pagina-content">
+        <span class="cerrarConfirmacion">&times;</span>
+        <h3>¡Compra realizada con éxito!</h3>
+        <p>Gracias por tu compra. Por favor, proporciona los siguientes datos para el envío:</p>
+
+        <!-- Campo de entrada para la dirección -->
+        <label for="direccion">Dirección:</label>
+        <input type="text" id="direccion" name="direccion" required>
+
+        <!-- Campo de entrada para la ciudad -->
+        <label for="ciudad">Ciudad:</label>
+        <input type="text" id="ciudad" name="ciudad" required>
+
+        <!-- Botón para confirmar la compra y enviar los datos -->
+        <button id="confirmarCompra" class="Comprar">Confirmar Compra</button>
     </div>
+</div>
     <script>
           let currentSabajonIndex = 0; 
         const sabajones = [
@@ -157,6 +182,9 @@
         const imagen = document.getElementById("imagen");
         const titulo = document.getElementById("titulo");
         const precio = document.getElementById("precio");
+        const direccionInput = document.getElementById("direccion");
+        const ciudadInput = document.getElementById("ciudad");
+        const confirmarCompraButton = document.getElementById("confirmarCompra");
         const descripcion = document.getElementById("descripcion");
         const perocioTElement = document.getElementById("perocioT");
         const cantidadP = document.getElementById("cantidadPro");
@@ -246,4 +274,29 @@
                 confirmacion.style.display = "none";
             }
         };
+    // Selecciona el modal de promociones y el botón de cierre
+const promocionesModal = document.getElementById("promocionesModal");
+const closePromociones = document.querySelector(".closePromociones");
+
+// Muestra el modal de promociones cuando se carga la página
+window.onload = function() {
+    promocionesModal.style.display = "flex";
+};
+
+// Cierra el modal cuando el usuario hace clic en el botón de cerrar
+closePromociones.onclick = function() {
+    promocionesModal.style.display = "none";
+};
+
+// Función para cerrar el modal desde el botón de la promoción
+function closePromocionesModal() {
+    promocionesModal.style.display = "none";
+}
+
+// Cierra el modal si el usuario hace clic fuera de él
+window.onclick = function(event) {
+    if (event.target == promocionesModal) {
+        promocionesModal.style.display = "none";
+    }
+};
     </script>
