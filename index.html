@@ -37,15 +37,17 @@
             <img src="resources/sabajonFeijoa.png" alt="Sabajón Feijoa">
             <img src="resources/sabajonCafe.png" alt="Sabajón Café">
             <img src="resources/sabajonMelocoton.png" alt="Sabajón Melocotón">
-        </div>
-        <div class="carousel-controls">
-            <button class="carousel-control prev">❮</button>
-            <button class="carousel-control next">❯</button>
-        </div>
-        <div class="carousel-indicators">
-            <span class="indicator active"></span>
-            <span class="indicator"></span>
-            <span class="indicator"></span>
+            
+            <div class="carousel-controls">
+                <button class="carousel-control prev">❮</button>
+                <button class="carousel-control next">❯</button>
+            </div>
+            
+            <div class="carousel-indicators">
+                <span class="indicator active"></span>
+                <span class="indicator"></span>
+                <span class="indicator"></span>
+            </div>
         </div>
     </section>
 
@@ -341,48 +343,52 @@ confirmarCompraButton.onclick = function () {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.querySelector('.carousel');
-            const images = document.querySelectorAll('.carousel img');
-            const indicators = document.querySelectorAll('.indicator');
-            const prevButton = document.querySelector('.prev');
-            const nextButton = document.querySelector('.next');
-            
-            let currentIndex = 0;
-            const totalImages = images.length;
-
-            // Función para actualizar el carrusel
-            function updateCarousel() {
-                carousel.style.transform = `translateX(-${currentIndex * 33.333}%)`;
-                
-                // Actualizar indicadores
-                indicators.forEach((indicator, index) => {
-                    indicator.classList.toggle('active', index === currentIndex);
-                });
-            }
-
-            // Event listeners para los botones
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
-                updateCarousel();
-            });
-
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % totalImages;
-                updateCarousel();
-            });
-
-            // Event listeners para los indicadores
-            indicators.forEach((indicator, index) => {
-                indicator.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateCarousel();
-                });
-            });
-
-            // Cambio automático cada 5 segundos
-            setInterval(() => {
-                currentIndex = (currentIndex + 1) % totalImages;
-                updateCarousel();
-            }, 5000);
+    const images = document.querySelectorAll('.carousel img');
+    const indicators = document.querySelectorAll('.indicator');
+    const prevButton = document.querySelector('.prev');
+    const nextButton = document.querySelector('.next');
+    
+    let currentIndex = 0;
+    
+    // Mostrar la primera imagen
+    images[0].classList.add('active');
+    
+    function showImage(index) {
+        // Ocultar todas las imágenes
+        images.forEach(img => img.classList.remove('active'));
+        // Mostrar la imagen seleccionada
+        images[index].classList.add('active');
+        
+        // Actualizar indicadores
+        indicators.forEach((indicator, i) => {
+            indicator.classList.toggle('active', i === index);
         });
-    </script>
+    }
+    
+    // Función para ir a la siguiente imagen
+    function nextImage() {
+        currentIndex = (currentIndex + 1) % images.length;
+        showImage(currentIndex);
+    }
+    
+    // Función para ir a la imagen anterior
+    function prevImage() {
+        currentIndex = (currentIndex - 1 + images.length) % images.length;
+        showImage(currentIndex);
+    }
+    
+    // Eventos para los botones
+    nextButton.addEventListener('click', nextImage);
+    prevButton.addEventListener('click', prevImage);
+    
+    // Eventos para los indicadores
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentIndex = index;
+            showImage(currentIndex);
+        });
+    });
+    
+    // Cambio automático cada 5 segundos
+    setInterval(nextImage, 5000);
+});
