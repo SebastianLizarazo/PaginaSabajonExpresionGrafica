@@ -859,7 +859,7 @@ footer {
 /* Estilos básicos del carrusel */
 .carousel-container {
     width: 100%;
-    max-width: 800px;
+    /*max-width: 1000px;*/
     height: 400px;
     margin: 0 auto;
     position: relative;
