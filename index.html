@@ -32,7 +32,24 @@
             </ul>
         </nav>
     </header>
+    <section class="carousel-container">
+        <div class="carousel">
+            <img src="resources/sabajonFeijoa.png" alt="Sabajón Feijoa">
+            <img src="resources/sabajonCafe.png" alt="Sabajón Café">
+            <img src="resources/sabajonMelocoton.png" alt="Sabajón Melocotón">
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-control prev">❮</button>
+            <button class="carousel-control next">❯</button>
+        </div>
+        <div class="carousel-indicators">
+            <span class="indicator active"></span>
+            <span class="indicator"></span>
+            <span class="indicator"></span>
+        </div>
+    </section>
 
+   
     <section id="inicio" class="hero">
         <h2>Los mejores Sabajones de producción local</h2>
         <p>
@@ -193,6 +210,7 @@
         const confirmacion = document.getElementById("confirmacionCompra");
         const cerrarConfirmacion = document.getElementsByClassName("cerrarConfirmacion")[0];
         const closepagina = document.getElementsByClassName("close")[0];
+        
     
         let preciototal = 0;
         let stockActualizado = 0; // Stock actual del sabajón
@@ -299,4 +317,72 @@ window.onclick = function(event) {
         promocionesModal.style.display = "none";
     }
 };
+// Función al hacer clic en el botón de Confirmar Compra
+confirmarCompraButton.onclick = function () {
+    // Obtener los valores de los campos de dirección y ciudad
+    const direccion = direccionInput.value.trim();
+    const ciudad = ciudadInput.value.trim();
+
+    // Validar que los campos no estén vacíos
+    if (direccion === "" || ciudad === "") {
+        alert("Por favor, completa todos los campos requeridos para confirmar la compra.");
+        return;
+    }
+
+    // Mostrar mensaje de confirmación
+    alert(`¡Gracias por tu compra!\nTu pedido será enviado a:\nDirección: ${direccion}\nCiudad: ${ciudad}`);
+
+    // Cerrar el modal de confirmación de compra
+    confirmacion.style.display = "none";
+
+    // Opcional: Restablecer los campos de dirección y ciudad
+    direccionInput.value = "";
+    ciudadInput.value = "";
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+            const carousel = document.querySelector('.carousel');
+            const images = document.querySelectorAll('.carousel img');
+            const indicators = document.querySelectorAll('.indicator');
+            const prevButton = document.querySelector('.prev');
+            const nextButton = document.querySelector('.next');
+            
+            let currentIndex = 0;
+            const totalImages = images.length;
+
+            // Función para actualizar el carrusel
+            function updateCarousel() {
+                carousel.style.transform = `translateX(-${currentIndex * 33.333}%)`;
+                
+                // Actualizar indicadores
+                indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === currentIndex);
+                });
+            }
+
+            // Event listeners para los botones
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + totalImages) % totalImages;
+                updateCarousel();
+            });
+
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarousel();
+            });
+
+            // Event listeners para los indicadores
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateCarousel();
+                });
+            });
+
+            // Cambio automático cada 5 segundos
+            setInterval(() => {
+                currentIndex = (currentIndex + 1) % totalImages;
+                updateCarousel();
+            }, 5000);
+        });
     </script>
